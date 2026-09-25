@@ -23,7 +23,7 @@
 <main>
   <section class="card">
     <h1>Política de privacidad de NovaLauncher</h1>
-    <p class="meta">Última actualización: septiembre de 2026</p>
+    <p class="meta">Última actualización: septiembre de 2026 · Versión 1.5</p>
     <p>Esta política describe cómo NovaLauncher gestiona la información cuando utilizas la aplicación Android desarrollada por Mikies21-Programmer.</p>
   </section>
 
@@ -31,8 +31,8 @@
     <h2>1. Información que procesa NovaLauncher</h2>
     <p>NovaLauncher utiliza determinadas capacidades del sistema para proporcionar funciones del launcher. El procesamiento se realiza localmente en el dispositivo, salvo que una función del sistema o un proveedor externo aplique sus propias reglas.</p>
     <ul>
-      <li><strong>Servicio de accesibilidad:</strong> se utiliza para acciones globales del sistema, como bloquear la pantalla y abrir el panel de notificaciones, mediante acciones de accesibilidad. La aplicación no solicita ni utiliza acceso al contenido de las ventanas.</li>
-      <li><strong>Servicio de escucha de notificaciones:</strong> se utiliza para calcular el contador de aplicaciones con notificaciones de comunicación pendientes. NovaLauncher procesa el nombre del paquete, la categoría y el estado de la notificación necesarios para esa función. No necesita leer ni almacenar el texto, remitente o contenido de los mensajes.</li>
+      <li><strong>Servicio de accesibilidad:</strong> se utiliza exclusivamente para ejecutar acciones globales del sistema iniciadas por el usuario: doble toque para bloquear la pantalla, deslizar hacia abajo para abrir el panel de notificaciones y tocar el contador de mensajes para abrir el panel de notificaciones. La configuración técnica del servicio establece estrictamente <code>canRetrieveWindowContent="false"</code> y <code>canPerformGestures="false"</code>. NovaLauncher no lee ni extrae contenido de la pantalla, textos, mensajes ni archivos, y no registra ni transmite eventos de accesibilidad. El uso del servicio es opcional y requiere el consentimiento afirmativo previo del usuario.</li>
+      <li><strong>Servicio de escucha de notificaciones:</strong> se utiliza exclusivamente para calcular el contador numérico en pantalla de aplicaciones únicas de comunicación que tienen mensajes pendientes (excluyendo llamadas activas y notificaciones continuas). NovaLauncher únicamente procesa de forma efímera en memoria el nombre del paquete, la categoría y el estado de la notificación necesarios para este cálculo. No lee, no almacena ni envía remotamente títulos, textos, remitentes, archivos adjuntos ni el contenido de las notificaciones.</li>
       <li><strong>Archivos seleccionados por el usuario:</strong> cuando eliges imágenes o vídeos mediante el selector de archivos del sistema, NovaLauncher utiliza las URI concedidas para mostrar el contenido seleccionado. Esas selecciones se almacenan localmente para conservar la configuración.</li>
       <li><strong>Configuración de la aplicación:</strong> preferencias y ajustes del launcher, como personalización visual y configuración de widgets, pueden almacenarse localmente en el dispositivo.</li>
     </ul>
