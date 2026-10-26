@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de privacidad — NovaLauncher</title>
-  <meta name="description" content="Política de privacidad de NovaLauncher.">
+  <meta name="description" content="Política de privacidad oficial de NovaLauncher (com.daybreak.animelauncher).">
   <style>
     :root{color-scheme:dark;--bg:#08080c;--panel:#111118;--text:#f2f4f7;--muted:#a8adb7;--accent:#00f0ff;--border:#252631}
     *{box-sizing:border-box}
@@ -17,62 +17,172 @@
     a{color:var(--accent)}
     ul{padding-left:22px}
     footer{color:var(--muted);font-size:.9rem;margin-top:30px}
+    code{background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;font-size:0.9em;color:var(--accent)}
   </style>
 </head>
 <body>
 <main>
   <section class="card">
     <h1>Política de privacidad de NovaLauncher</h1>
-    <p class="meta">Última actualización: septiembre de 2026 · Versión 1.5</p>
-    <p>Esta política describe cómo NovaLauncher gestiona la información cuando utilizas la aplicación Android desarrollada por Mikies21-Programmer.</p>
+    <p class="meta">Última actualización: 26 de octubre de 2026 · Versión 1.6.1</p>
+    <p>Esta política describe de manera transparente cómo NovaLauncher gestiona la información cuando utilizas la aplicación Android desarrollada por Mikies21-Programmer (identificador de paquete: <code>com.daybreak.animelauncher</code>). La privacidad del usuario es un principio de diseño fundamental: <strong>ningún dato personal ni de uso es transmitido fuera de su dispositivo</strong>.</p>
   </section>
 
   <section class="card">
-    <h2>1. Información que procesa NovaLauncher</h2>
-    <p>NovaLauncher utiliza determinadas capacidades del sistema para proporcionar funciones del launcher. El procesamiento se realiza localmente en el dispositivo, salvo que una función del sistema o un proveedor externo aplique sus propias reglas.</p>
+    <h2>1. Naturaleza del Procesamiento: Funcionamiento Local (Offline-First)</h2>
+    <p>NovaLauncher opera como una aplicación local e independiente:</p>
     <ul>
-      <li><strong>Servicio de accesibilidad:</strong> se utiliza exclusivamente para ejecutar acciones globales del sistema iniciadas por el usuario: doble toque para bloquear la pantalla, deslizar hacia abajo para abrir el panel de notificaciones y tocar el contador de mensajes para abrir el panel de notificaciones. La configuración técnica del servicio establece estrictamente <code>canRetrieveWindowContent="false"</code> y <code>canPerformGestures="false"</code>. NovaLauncher no lee ni extrae contenido de la pantalla, textos, mensajes ni archivos, y no registra ni transmite eventos de accesibilidad. El uso del servicio es opcional y requiere el consentimiento afirmativo previo del usuario.</li>
-      <li><strong>Servicio de escucha de notificaciones:</strong> se utiliza exclusivamente para calcular el contador numérico en pantalla de aplicaciones únicas de comunicación que tienen mensajes pendientes (excluyendo llamadas activas y notificaciones continuas). NovaLauncher únicamente procesa de forma efímera en memoria el nombre del paquete, la categoría y el estado de la notificación necesarios para este cálculo. No lee, no almacena ni envía remotamente títulos, textos, remitentes, archivos adjuntos ni el contenido de las notificaciones.</li>
-      <li><strong>Archivos seleccionados por el usuario:</strong> cuando eliges imágenes o vídeos mediante el selector de archivos del sistema, NovaLauncher utiliza las URI concedidas para mostrar el contenido seleccionado. Esas selecciones se almacenan localmente para conservar la configuración.</li>
-      <li><strong>Configuración de la aplicación:</strong> preferencias y ajustes del launcher, como personalización visual y configuración de widgets, pueden almacenarse localmente en el dispositivo.</li>
+      <li><strong>Sin cuentas de usuario:</strong> no se requiere ni existe registro, inicio de sesión, contraseñas en la nube ni vinculación con cuentas externas.</li>
+      <li><strong>Sin servidores remotos:</strong> NovaLauncher no mantiene servidores propios, bases de datos en la nube ni servicios de sincronización remota.</li>
+      <li><strong>Tratamiento estrictamente local:</strong> todas las operaciones lógicas (como conteo de notificaciones, búsqueda alfabética e interpretación de gestos) se ejecutan exclusivamente en la memoria de su dispositivo. Las preferencias de diseño se almacenan de forma privada en el almacenamiento local del dispositivo.</li>
+      <li><strong>Google Play Data Safety:</strong> conforme a las directrices vigentes de Google Play, dado que los datos no se transmiten fuera del dispositivo ni se conservan para fines de seguimiento, NovaLauncher se clasifica formalmente como una aplicación que <strong>no recopila ni comparte datos de usuario</strong>.</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>2. Lo que no hacemos</h2>
-    <p>NovaLauncher no incorpora cuentas de usuario, perfiles de seguimiento, analítica propia, publicidad, Firebase Analytics, Crashlytics, Sentry ni otros servicios propios de telemetría. La aplicación no transmite intencionadamente a nuestros servidores los datos descritos anteriormente.</p>
+    <h2>2. Cajón de Aplicaciones y Aplicaciones Instaladas</h2>
+    <p>Para operar como pantalla de inicio, NovaLauncher consulta la lista de aplicaciones instaladas en el sistema mediante las APIs estándar de Android (<code>PackageManager</code>):</p>
+    <ul>
+      <li><strong>Finalidad funcional:</strong> construir el cajón de aplicaciones (App Drawer), permitir la búsqueda alfabética instantánea y lanzar las aplicaciones seleccionadas por el usuario.</li>
+      <li><strong>Caché en memoria de iconos:</strong> se mantiene un caché en memoria volátil (<code>IconCache</code>, máximo 128 entradas LRU) para renderizado fluido a alta tasa de refresco (120 Hz) sin recargas redundantes.</li>
+      <li><strong>Aislamiento total:</strong> la lista de aplicaciones instaladas, sus nombres y sus iconos se procesan exclusivamente en memoria local. No se generan perfiles de uso ni se envía ningún dato sobre sus aplicaciones instaladas fuera del dispositivo.</li>
+    </ul>
   </section>
 
   <section class="card">
-    <h2>3. Compartición de información</h2>
-    <p>NovaLauncher no vende ni comparte con terceros, con fines publicitarios o de seguimiento, la información procesada por las funciones descritas en esta política. Las aplicaciones y servicios del sistema Android o de terceros que intervengan al abrir un enlace, seleccionar un archivo o ejecutar una acción del sistema se rigen por sus propias políticas.</p>
+    <h2>3. Servicio de Accesibilidad (AccessibilityService)</h2>
+    <p>NovaLauncher incluye la capacidad opcional de utilizar la API <code>AccessibilityService</code> de Android (componente <code>LauncherAccessibilityService</code>):</p>
+    <ul>
+      <li><strong>Finalidad exclusiva y opcional:</strong> se utiliza única y exclusivamente para ejecutar acciones globales del sistema iniciadas voluntariamente por el usuario mediante gestos desde la pantalla de inicio:
+        <ul>
+          <li>Doble toque en área vacía: apagar y bloquear la pantalla (<code>GLOBAL_ACTION_LOCK_SCREEN</code>).</li>
+          <li>Deslizar hacia abajo: abrir el panel de notificaciones (<code>GLOBAL_ACTION_NOTIFICATIONS</code>).</li>
+          <li>Tocar el contador de mensajes: abrir el panel de notificaciones (<code>GLOBAL_ACTION_NOTIFICATIONS</code>).</li>
+        </ul>
+      </li>
+      <li><strong>Garantías técnicas y aislamiento:</strong> la configuración del servicio establece formalmente <code>canRetrieveWindowContent="false"</code> y <code>canPerformGestures="false"</code>. NovaLauncher <strong>no inspecciona</strong>, <strong>no lee</strong> y <strong>no tiene acceso</strong> al contenido de la pantalla, textos, contraseñas, ventanas de otras aplicaciones ni pulsaciones de teclado.</li>
+      <li><strong>Sin registro ni transmisión:</strong> el método <code>onAccessibilityEvent</code> no procesa ni almacena información. Ningún dato relacionado con la accesibilidad se guarda en disco ni se envía a través de la red.</li>
+      <li><strong>Divulgación destacada y consentimiento previo:</strong> se presenta un diálogo in-app de divulgación destacada antes de dirigir al usuario a los ajustes de accesibilidad de Android, requiriendo el consentimiento afirmativo del usuario para su habilitación.</li>
+    </ul>
   </section>
 
   <section class="card">
-    <h2>4. Conservación y eliminación</h2>
-    <p>La configuración y las selecciones locales permanecen en el dispositivo mientras sean necesarias para el funcionamiento de la aplicación. Puedes eliminar los datos locales de NovaLauncher desde los ajustes de Android o desinstalando la aplicación. El acceso a notificaciones y accesibilidad puede revocarse en cualquier momento desde los ajustes del sistema.</p>
+    <h2>4. Acceso a Notificaciones (NotificationListenerService)</h2>
+    <p>NovaLauncher incluye el servicio <code>NotificationMonitorService</code> mediante el permiso de sistema <code>android.permission.BIND_NOTIFICATION_LISTENER_SERVICE</code>:</p>
+    <ul>
+      <li><strong>Finalidad exclusiva:</strong> calcular y mostrar un indicador numérico en pantalla que refleja el número de aplicaciones de mensajería únicas con notificaciones activas no leídas.</li>
+      <li><strong>Tratamiento mínimo y efímero:</strong> únicamente se inspeccionan en memoria el nombre del paquete (<code>packageName</code>), la categoría (admitiendo mensajes/correo y descartando llamadas) y el estado (excluyendo procesos continuos como descargas).</li>
+      <li><strong>Sin acceso al contenido:</strong> NovaLauncher <strong>no lee</strong>, <strong>no almacena</strong> ni transmite el texto del mensaje, remitente, asunto ni archivos adjuntos. El cálculo se realiza en memoria volátil deduplicando aplicaciones únicas sin persistencia en disco ni transmisión por red.</li>
+    </ul>
   </section>
 
   <section class="card">
-    <h2>5. Seguridad</h2>
-    <p>NovaLauncher limita el procesamiento a las capacidades necesarias para sus funciones y mantiene los datos de configuración de forma local. Ninguna medida de seguridad puede garantizar un riesgo cero, por lo que recomendamos mantener actualizado Android y proteger el dispositivo.</p>
+    <h2>5. Fotos, Videos e Iconos de la Galería</h2>
+    <p>NovaLauncher permite personalizar el aspecto visual de las pantallas con fondos estáticos, fondos de video dinámicos e iconos personalizados:</p>
+    <ul>
+      <li><strong>Storage Access Framework (SAF):</strong> la selección de archivos se realiza exclusivamente a través de los componentes del sistema Android (<code>OpenDocument</code> / <code>PickVisualMedia</code>). NovaLauncher no solicita permisos generales ni invasivos de almacenamiento como <code>READ_EXTERNAL_STORAGE</code> o <code>MANAGE_EXTERNAL_STORAGE</code>.</li>
+      <li><strong>Referencias URI locales persistentes:</strong> la aplicación conserva únicamente el identificador local (<code>Uri</code>) concedido por el sistema con permisos persistentes de lectura (<code>FLAG_GRANT_READ_URI_PERMISSION</code>) para poder mostrar el fondo o icono configurado.</li>
+      <li><strong>Privacidad de los medios:</strong> las fotos, videos y gráficos permanecen en su ubicación original en su dispositivo y nunca se cargan ni transfieren a servidores externos.</li>
+    </ul>
   </section>
 
   <section class="card">
-    <h2>6. Cambios a esta política</h2>
-    <p>Podemos actualizar esta política cuando cambien la aplicación o sus prácticas de privacidad. La fecha de actualización se modificará cuando exista una nueva versión de esta política.</p>
+    <h2>6. Fondos Dinámicos y Extracción de Color (Adaptive Theming)</h2>
+    <p>NovaLauncher ofrece la función opcional de generación de temas adaptativos basados en los colores del fondo de pantalla:</p>
+    <ul>
+      <li><strong>Procesamiento local:</strong> utiliza la biblioteca oficial <code>androidx.palette:palette-ktx</code> y muestreo de frames (10%, 50%, 90% en video) en hilos en segundo plano para extraer paletas armónicas.</li>
+      <li><strong>Gestión efímera de memoria:</strong> los fotogramas y mapas de bits se escalan a baja resolución (~200–400 px) y se reciclan inmediatamente tras la extracción.</li>
+      <li><strong>Cero transmisión de medios:</strong> ningún fotograma se guarda permanentemente ni se envía fuera del dispositivo; únicamente se persisten los valores enteros de color hexadecimales elegidos por el usuario en las preferencias locales.</li>
+    </ul>
   </section>
 
   <section class="card">
-    <h2>7. Contacto</h2>
+    <h2>7. Widgets del Sistema</h2>
+    <p>NovaLauncher permite alojar widgets nativos provistos por otras aplicaciones instaladas en su dispositivo (<code>BIND_APPWIDGET</code>):</p>
+    <ul>
+      <li><strong>Alojamiento local:</strong> el lanzador actúa únicamente como contenedor visual (anfitrión de widgets) de acuerdo con el marco estándar de Android.</li>
+      <li><strong>Límites de responsabilidad:</strong> los contenidos, datos e interacciones dentro de cada widget son administrados directamente por la aplicación proveedora de dicho widget. NovaLauncher no intercepta, no almacena ni transmite los datos internos procesados por widgets de terceros.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>8. Fondo de Pantalla del Sistema</h2>
+    <p>Al configurar un fondo visual, NovaLauncher puede interactuar con el administrador de fondos de Android (<code>WallpaperManager</code>) mediante el permiso <code>SET_WALLPAPER</code>. Esta interacción es estrictamente local para sincronizar la vista previa del sistema en pantallas como el selector de tareas recientes (multitarea).</p>
+  </section>
+
+  <section class="card">
+    <h2>9. Estadísticas de Memoria del Dispositivo (RAM Monitor)</h2>
+    <p>NovaLauncher puede mostrar en la interfaz estadísticas de memoria RAM del teléfono (memoria total, usada aproximada y disponible):</p>
+    <ul>
+      <li><strong>API estándar:</strong> se consulta mediante <code>ActivityManager.MemoryInfo</code> provisto por el sistema operativo.</li>
+      <li><strong>Volátil y local:</strong> se actualiza periódicamente (cada 5 segundos) exclusivamente mientras la vista correspondiente está activa. No se guardan históricos, no se registran en almacenamiento permanente y no se envían fuera del dispositivo.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>10. Funcionalidad de Apps Ocultas (Hidden Apps)</h2>
+    <p>NovaLauncher incluye una bóveda privada opcional para ocultar aplicaciones seleccionadas del cajón de aplicaciones y la búsqueda:</p>
+    <ul>
+      <li><strong>Procesamiento 100% local:</strong> toda la lógica de protección, cifrado y autenticación opera exclusivamente en el dispositivo.</li>
+      <li><strong>Almacenamiento aislado:</strong> la lista de paquetes ocultos se almacena en <code>nova_hidden_apps_prefs.xml</code>, formalmente excluido de copias de seguridad en la nube (cloud backup) y transferencias entre dispositivos (device-to-device transfer).</li>
+      <li><strong>Cifrado por hardware:</strong> las credenciales propias (PIN, patrón o contraseña) se procesan con derivación PBKDF2 (120,000 iteraciones con salt aleatorio) y se protegen mediante cifrado por hardware en <code>Android Keystore</code> (AES-GCM en <code>nova_hidden_apps_vault.xml</code>). Las credenciales nunca se guardan en texto plano ni se transmiten.</li>
+      <li><strong>Autenticación biométrica delegada:</strong> cuando se utiliza huella dactilar o reconocimiento facial, se delega íntegramente a <code>BiometricPrompt</code> de Android. NovaLauncher no accede, no almacena ni recopila datos biométricos.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>11. Conectividad, Red y Permiso de Internet</h2>
+    <p>De acuerdo con la auditoría técnica exhaustiva del código fuente de NovaLauncher:</p>
+    <ul>
+      <li><strong>Permiso de Internet:</strong> la aplicación declara <code>android.permission.INTERNET</code> en su manifiesto. Dicho permiso no se utiliza para enviar datos de usuario, telemetría ni comunicación en segundo plano. La única acción de red ocurre cuando el usuario pulsa voluntariamente el enlace a la Política de Privacidad en los Ajustes, abriendo esta página pública en el navegador externo del dispositivo.</li>
+      <li><strong>Sin servidores propios:</strong> no existen servidores, APIs REST ni bases de datos remotas conectadas a la aplicación.</li>
+      <li><strong>Sin telemetría ni analítica:</strong> no se utilizan herramientas de análisis ni métricas de uso (cero Firebase Analytics, Google Analytics, Flurry o Mixpanel).</li>
+      <li><strong>Sin reporte de fallos externo:</strong> no se incluyen SDKs de crash reporting (sin Crashlytics, Sentry ni Bugsnag).</li>
+      <li><strong>Sin publicidad ni compras:</strong> la aplicación no incluye bibliotecas de anuncios (sin AdMob) ni compras integradas (sin Google Play Billing).</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>12. Datos y Permisos no Tratados</h2>
+    <p>Para máxima claridad, NovaLauncher <strong>NO</strong> solicita, no accede ni procesa:</p>
+    <ul>
+      <li><strong>Ubicación:</strong> sin permisos de GPS ni ubicación (<code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code>).</li>
+      <li><strong>Contactos:</strong> sin acceso a la libreta de direcciones (<code>READ_CONTACTS</code>).</li>
+      <li><strong>Cámara y micrófono:</strong> sin permisos de captura de audio o video (<code>CAMERA</code>, <code>RECORD_AUDIO</code>).</li>
+      <li><strong>Identificadores de seguimiento:</strong> sin lectura de identificadores publicitarios (AAID), <code>ANDROID_ID</code> ni números de serie.</li>
+      <li><strong>Datos financieros:</strong> sin acceso a datos bancarios ni transacciones de pago.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>13. Compartición de Información</h2>
+    <p>NovaLauncher no vende, no transfiere y no comparte con terceros, bajo ningún concepto, la información procesada por sus funciones. Las aplicaciones y servicios del sistema Android o de terceros que intervengan al abrir un enlace, seleccionar un archivo o alojar un widget se rigen exclusivamente por sus propias políticas de privacidad.</p>
+  </section>
+
+  <section class="card">
+    <h2>14. Conservación y Eliminación</h2>
+    <p>Las configuraciones y selecciones locales permanecen en el dispositivo mientras sean necesarias para el funcionamiento del launcher. El usuario puede eliminar todos los datos locales en cualquier momento desde los Ajustes de Android (Aplicaciones &gt; NovaLauncher &gt; Borrar datos) o desinstalando la aplicación. Los permisos especiales de accesibilidad y notificaciones pueden revocarse cuando se desee desde los ajustes del sistema operativo.</p>
+  </section>
+
+  <section class="card">
+    <h2>15. Seguridad y Aislamiento</h2>
+    <p>NovaLauncher implementa el principio de mínimo privilegio, almacena sus preferencias en el almacenamiento privado de la aplicación protegido por el sistema de ficheros de Android y aísla sus procesos dentro del espacio aislado (sandbox) provisto por el sistema operativo.</p>
+  </section>
+
+  <section class="card">
+    <h2>16. Cambios a esta Política</h2>
+    <p>Podemos actualizar esta política si cambian las capacidades de la aplicación o las exigencias normativas. La fecha de actualización se modificará al inicio de este documento cuando exista una nueva revisión.</p>
+  </section>
+
+  <section class="card">
+    <h2>17. Contacto</h2>
     <p>
-      Para consultas relacionadas con la privacidad de NovaLauncher,
-      puedes contactar al desarrollador en:
+      Para consultas, solicitudes o dudas relacionadas con la privacidad de NovaLauncher, puedes contactar al desarrollador en:
       <a href="mailto:dbreak472@gmail.com">dbreak472@gmail.com</a>
     </p>
   </section>
 
-  <footer>NovaLauncher · Aplicación Android · Identificador del paquete: com.daybreak.animelauncher</footer>
+  <footer>NovaLauncher · Aplicación Android · Identificador de paquete: com.daybreak.animelauncher · Versión 1.6.1</footer>
 </main>
 </body>
 </html>
